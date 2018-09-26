@@ -95,6 +95,13 @@ export enum TaxRateType {
   WATER = "WATER",
 }
 
+export enum WeightUnitsEnum {
+  g = "g",
+  kg = "kg",
+  lb = "lb",
+  oz = "oz",
+}
+
 export interface AddressInput {
   firstName?: string | null;
   lastName?: string | null;
