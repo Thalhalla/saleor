@@ -16,6 +16,7 @@ ADD Pipfile.lock /app/
 ADD requirements.txt /app/
 RUN pip install --upgrade pip
 RUN pip install -r /app/requirements.txt
+ADD requirements_dev.txt /app/
 RUN pip install -r /app/requirements_dev.txt
 
 RUN pipenv install --system --deploy
