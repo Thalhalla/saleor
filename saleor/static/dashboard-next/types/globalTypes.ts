@@ -5,6 +5,11 @@
 // START Enums and Input Objects
 //==============================================================
 
+export enum AttributeTypeEnum {
+  PRODUCT = "PRODUCT",
+  VARIANT = "VARIANT",
+}
+
 export enum FulfillmentStatus {
   CANCELED = "CANCELED",
   FULFILLED = "FULFILLED",
@@ -114,6 +119,22 @@ export interface AddressInput {
   country?: string | null;
   countryArea?: string | null;
   phone?: string | null;
+}
+
+export interface AttributeCreateInput {
+  name: string;
+  values?: (AttributeCreateValueInput | null)[] | null;
+}
+
+export interface AttributeCreateValueInput {
+  name: string;
+  value: string;
+}
+
+export interface AttributeUpdateInput {
+  name?: string | null;
+  removeValues: (string | null)[];
+  addValues: (AttributeCreateValueInput | null)[];
 }
 
 export interface AttributeValueInput {
