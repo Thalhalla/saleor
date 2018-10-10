@@ -30,6 +30,7 @@ ARG STATIC_URL
 ENV STATIC_URL ${STATIC_URL:-/static/}
 
 # Install node_modules
+WORKDIR /app
 ADD webpack.config.js app.json package.json package-lock.json tsconfig.json webpack.d.ts /app/
 RUN npm install
 
