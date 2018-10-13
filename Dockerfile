@@ -12,16 +12,8 @@ RUN \
 RUN pip install pipenv
 ADD Pipfile /app/
 ADD Pipfile.lock /app/
-ADD requirements.txt /app/
-ADD requirements_dev.txt /app/
-RUN pip install --upgrade pip
-RUN pip install -r /app/requirements.txt
-RUN pip install -r /app/requirements_dev.txt
-
-# Install pipenv in /app
 WORKDIR /app
-RUN pipenv install
-RUN pipenv install --system --deploy
+RUN pipenv install --system --deploy --dev
 
 ### Build static assets
 FROM node:10 as build-nodejs
@@ -30,8 +22,8 @@ ARG STATIC_URL
 ENV STATIC_URL ${STATIC_URL:-/static/}
 
 # Install node_modules
-WORKDIR /app
 ADD webpack.config.js app.json package.json package-lock.json tsconfig.json webpack.d.ts /app/
+WORKDIR /app
 RUN npm install
 
 # Build static

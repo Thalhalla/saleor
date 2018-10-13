@@ -1,6 +1,6 @@
 import { stringify } from "qs";
 import i18n from "./i18n";
-import { TaxRateType } from "./types/globalTypes";
+import { AuthorizationKeyType, TaxRateType } from "./types/globalTypes";
 
 export interface PageInfo {
   endCursor: string;
@@ -94,13 +94,13 @@ export function renderCollection<T>(
     index: number | undefined,
     collection: T[]
   ) => any,
-  renderEmpty: (collection: T[]) => any
+  renderEmpty?: (collection: T[]) => any
 ) {
   if (collection === undefined) {
     return renderItem(undefined, undefined, collection);
   }
   if (collection.length === 0) {
-    return renderEmpty(collection);
+    return !!renderEmpty ? renderEmpty(collection) : null;
   }
   return collection.map(renderItem);
 }
@@ -113,7 +113,7 @@ export const removeDoubleSlashes = (url: string) =>
   url.replace(/([^:]\/)\/+/g, "$1");
 
 export const translatedTaxRates = () => ({
-  [TaxRateType.ACCOMODATION]: i18n.t("Accomodation"),
+  [TaxRateType.ACCOMMODATION]: i18n.t("Accommodation"),
   [TaxRateType.ADMISSION_TO_CULTURAL_EVENTS]: i18n.t(
     "Admission to cultural events"
   ),
@@ -143,6 +143,11 @@ export const translatedTaxRates = () => ({
   [TaxRateType.SOCIAL_HOUSING]: i18n.t("Social housing"),
   [TaxRateType.STANDARD]: i18n.t("Standard"),
   [TaxRateType.WATER]: i18n.t("Water")
+});
+
+export const translatedAuthorizationKeyTypes = () => ({
+  [AuthorizationKeyType.FACEBOOK]: i18n.t("Facebook"),
+  [AuthorizationKeyType.GOOGLE_OAUTH2]: i18n.t("Google OAuth2")
 });
 
 export function maybe<T>(exp: () => T, d?: T) {

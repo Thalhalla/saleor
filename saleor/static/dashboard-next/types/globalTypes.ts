@@ -5,6 +5,11 @@
 // START Enums and Input Objects
 //==============================================================
 
+export enum AuthorizationKeyType {
+  FACEBOOK = "FACEBOOK",
+  GOOGLE_OAUTH2 = "GOOGLE_OAUTH2",
+}
+
 export enum FulfillmentStatus {
   CANCELED = "CANCELED",
   FULFILLED = "FULFILLED",
@@ -55,8 +60,21 @@ export enum PaymentStatusEnum {
   WAITING = "WAITING",
 }
 
+export enum PermissionEnum {
+  IMPERSONATE_USERS = "IMPERSONATE_USERS",
+  MANAGE_DISCOUNTS = "MANAGE_DISCOUNTS",
+  MANAGE_MENUS = "MANAGE_MENUS",
+  MANAGE_ORDERS = "MANAGE_ORDERS",
+  MANAGE_PAGES = "MANAGE_PAGES",
+  MANAGE_PRODUCTS = "MANAGE_PRODUCTS",
+  MANAGE_SETTINGS = "MANAGE_SETTINGS",
+  MANAGE_SHIPPING = "MANAGE_SHIPPING",
+  MANAGE_STAFF = "MANAGE_STAFF",
+  MANAGE_USERS = "MANAGE_USERS",
+}
+
 export enum TaxRateType {
-  ACCOMODATION = "ACCOMODATION",
+  ACCOMMODATION = "ACCOMMODATION",
   ADMISSION_TO_CULTURAL_EVENTS = "ADMISSION_TO_CULTURAL_EVENTS",
   ADMISSION_TO_ENTERTAINMENT_EVENTS = "ADMISSION_TO_ENTERTAINMENT_EVENTS",
   ADMISSION_TO_SPORTING_EVENTS = "ADMISSION_TO_SPORTING_EVENTS",
@@ -82,6 +100,13 @@ export enum TaxRateType {
   WATER = "WATER",
 }
 
+export enum WeightUnitsEnum {
+  g = "g",
+  kg = "kg",
+  lb = "lb",
+  oz = "oz",
+}
+
 export interface AddressInput {
   firstName?: string | null;
   lastName?: string | null;
@@ -101,6 +126,11 @@ export interface AttributeValueInput {
   value: string;
 }
 
+export interface AuthorizationKeyInput {
+  key?: string | null;
+  password?: string | null;
+}
+
 export interface DraftOrderInput {
   billingAddress?: AddressInput | null;
   user?: string | null;
@@ -109,6 +139,10 @@ export interface DraftOrderInput {
   shippingAddress?: AddressInput | null;
   shippingMethod?: string | null;
   voucher?: string | null;
+}
+
+export interface FulfillmentCancelInput {
+  restock?: boolean | null;
 }
 
 export interface FulfillmentCreateInput {
@@ -120,6 +154,11 @@ export interface FulfillmentCreateInput {
 export interface FulfillmentLineInput {
   orderLineId?: string | null;
   quantity?: number | null;
+}
+
+export interface FulfillmentUpdateTrackingInput {
+  trackingNumber?: string | null;
+  notifyCustomer?: boolean | null;
 }
 
 export interface OrderAddNoteInput {
@@ -153,6 +192,20 @@ export interface ProductTypeInput {
   isShippingRequired?: boolean | null;
   weight?: any | null;
   taxRate?: TaxRateType | null;
+}
+
+export interface ShopSettingsInput {
+  headerText?: string | null;
+  description?: string | null;
+  includeTaxesInPrices?: boolean | null;
+  displayGrossPrices?: boolean | null;
+  trackInventoryByDefault?: boolean | null;
+  defaultWeightUnit?: WeightUnitsEnum | null;
+}
+
+export interface SiteDomainInput {
+  domain?: string | null;
+  name?: string | null;
 }
 
 export interface StaffCreateInput {

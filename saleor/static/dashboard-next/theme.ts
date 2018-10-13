@@ -12,6 +12,8 @@ const primary = "#5AB378";
 const secondary = "#03a9f4";
 const error = "#CD5E5E";
 
+export const ICONBUTTON_SIZE = 48;
+
 export default createMuiTheme({
   overrides: {
     MuiButton: {
@@ -28,6 +30,11 @@ export default createMuiTheme({
     MuiCard: {
       root: {
         borderRadius: 8
+      }
+    },
+    MuiCardActions: {
+      root: {
+        flexDirection: "row-reverse" as "row-reverse"
       }
     },
     MuiInput: {
@@ -103,8 +110,7 @@ export default createMuiTheme({
           paddingLeft: 24 + "px",
           textAlign: "left" as "left"
         },
-        paddingLeft: 0,
-        textAlign: "center" as "center"
+        padding: "4px 24px 4px 0"
       }
     },
     MuiTableRow: {
